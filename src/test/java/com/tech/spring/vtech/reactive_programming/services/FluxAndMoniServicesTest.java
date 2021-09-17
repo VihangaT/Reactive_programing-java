@@ -20,4 +20,22 @@ class FluxAndMoniServicesTest {
 
         StepVerifier.create(fruitMono).expectNext("mango").verifyComplete();
     }
+
+    @Test
+    void fruitsFluxMap() {
+        var fruitFluxMap=fluxAndMoniServices.fruitsFluxMap();
+        StepVerifier.create(fruitFluxMap).expectNext("MANGO","APPLE","BANANA").verifyComplete();
+    }
+
+    @Test
+    void fruitsFluxFilter() {
+        var fruitsFluxFilter=fluxAndMoniServices.fruitsFluxFilter(5);
+        StepVerifier.create(fruitsFluxFilter).expectNext("Banana").verifyComplete();
+    }
+
+    @Test
+    void fruitsFluxFilterAndMap() {
+        var fruitsFluxMapAndFilter =fluxAndMoniServices.fruitsFluxFilterAndMap(5);
+        StepVerifier.create(fruitsFluxMapAndFilter).expectNext("BANANA").verifyComplete();
+    }
 }
